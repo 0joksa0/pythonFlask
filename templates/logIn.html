@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Log In</title>
+    
+</head>
+<body>
+    <h1>Log In</h1>
+    <form action="/logIn" method="post">
+        <input type="hidden" name="action" value="logIn">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        <br>
+        <input type="submit" value="Log In">
+    </form>
+    <p>{{error}}</p>
+    <p>Don't have an account? <a href="/signUp">Sign Up</a></p>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            margin: 5px;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+            <form action="/logOut" method="post">
+                <button type="submit">LogOut</button>
+            </form>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/friends">Friends</a></li>
+                <li><a href="/users">Users</a></li>
+                <li><a href="/settings">Settings</a></li>
+            </ul>
+        <a href="/profile">
+            {{user[1]}}
+            {% if user[4]  %}
+            <div class="profilePhoto">
+
+                <img src="{{ url_for('static', filename='uploads/' + user[0]|string + '/' + user[4]) }}" alt="Profile Image">
+            
+            </div>
+            {% endif %}</a>
+    </header>
+    
+<h1>Profile</h1>
+
+<div class="allPosts">
+    {% for post in posts %}
+        <div class="onePost">
+            <h2 class="title">{{post[1]}}</h2>
+            <p class="content">{{post[2]}}</p>
+            <p class="author">{{post[5]}}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .profilePhoto {
+        display: flex;
+        justify-content: center;
+        margin: 1rem;
+    }
+    .profilePhoto img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    h1 {
+        text-align: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    input {
+        margin: 5px;
+    }
+    p {
+        text-align: center;
+    }
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+    }
+    header form {
+        display: flex;
+        align-items: center;
+    }
+    header form button {
+        margin: 0;
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: none;
+        background-color: #898989;
+        color: white;
+        cursor: pointer;
+    }
+
+    header form button:hover {
+        
+        background-color: #080808;
+    }
+
+    header h1 {
+        margin: 0;
+    }
+
+    header> a {
+        display: flex;
+        align-items: center;
+        
+        color: white;
+        text-decoration: none;
+        font-size: 2rem;
+    }
+
+    ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    ul li {
+        margin: 0 10px;
+    }
+
+    ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    ul li a:hover {
+        text-decoration: underline;
+    }
+
+    .allPosts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    #postForm {
+        width: 35%;
+        margin: 0 auto;
+    }
+    #postForm input[type="submit"] {
+        width: 100%;
+    }
+    #postForm textarea {
+        height: 200px;
+        width: 100%;
+    }
+    #postForm input[type="text"] {
+        width: 100%;
+    }
+
+    .onePost {
+        position: relative;
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        border: 1px solid #333;
+        border-radius: 15px;
+        margin: 10px;
+        padding: 10px;
+
+    }
+
+    .onePost h2 {
+        margin: 0;
+    }
+
+    .onePost p {
+        margin: 1rem;
+    }
+    .onePost p.author {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+</style>
+</body>
+</html>

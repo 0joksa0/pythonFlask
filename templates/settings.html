@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Profile</title>
+</head>
+<body>
+    <header>
+            <form action="/logOut" method="post">
+                <button type="submit">LogOut</button>
+            </form>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/friends">Friends</a></li>
+                <li><a href="/users">Users</a></li>
+            </ul>
+        <a href="/profile">
+            {{user[1]}}
+            {% if user[4]  %}
+            <div class="profilePhoto">
+                <img src="{{ url_for('static', filename='uploads/' + user[0]|string + '/' + user[4]) }}" alt="Profile Image">
+            </div>
+            {% endif %}</a>
+    </header>
+    
+    <div class="profileCard">
+        <h2>{{user[1]}}</h2>
+        <h2>{{user[2]}}</h2>
+        <form action="/changePassword" method="post">
+            <label for="oldPassw">Old password</label>
+            <input type="password" name="oldPassw" id="oldPassw" required>
+            <label for="newPassw">New password</label>
+            <input type="password" name="newPassw" id="newPassw" required>
+            {% if error  %}
+            <p>{{error}}</p>
+            {% endif %}
+            {% if success  %}
+            <p>{{success}}</p>
+            {% endif %}
+            <input type="submit" value="Change password">
+        </form>
+    </div>
+    <div class="profileCard">
+        <form action="/photo" method="post" enctype="multipart/form-data">
+            <label for="photo">Chose a profile photo</label>
+            <input type="file" name="photo" id="photo" required>
+            <input type="submit" value="Change photo">
+        </form>
+    </div>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .profilePhoto {
+        display: flex;
+        justify-content: center;
+        margin: 1rem;
+    }
+    .profilePhoto img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            margin: 5px;
+        }
+        p {
+            text-align: center;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+        header form {
+            display: flex;
+            align-items: center;
+        }
+        header form button {
+            margin: 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: none;
+            background-color: #898989;
+        }
+        header ul {
+            display: flex;
+            list-style: none;
+        }
+        header ul li {
+            margin: 0 10px;
+        }
+        header ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        header> a {
+        color: white;
+        text-decoration: none;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+    }
+        .profileCard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+    </style>
+</body>
+</html>
