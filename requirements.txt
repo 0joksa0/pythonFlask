@@ -1,0 +1,11 @@
+blinker       
+click         
+Flask         
+Flask-MySQLdb 
+itsdangerous  
+Jinja2        
+MarkupSafe    
+mysqlclient   
+pip           
+setuptools    
+Werkzeug      
