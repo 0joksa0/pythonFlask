@@ -6,13 +6,15 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'flaskapp'
-app.config['SECRET_KEY'] = 'mysecretkey'
-app.config['UPLOAD_FOLDER'] = '/home/aleksandar/python/webServerSimple/static/uploads'
-mysql = MySQL(app)
+app.config['MYSQL_HOST']     = os.environ['MYSQL_HOST']
+app.config['MYSQL_USER']     = os.environ['MYSQL_USER']
+app.config['MYSQL_PASSWORD'] = os.environ['MYSQL_PASSWORD']
+app.config['MYSQL_DB']       = os.environ['MYSQL_DB']
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-fallback-key')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+upload_folder = os.path.join(BASE_DIR, 'static', 'uploads')
+os.makedirs(upload_folder, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = upload_folder
 
 
 
