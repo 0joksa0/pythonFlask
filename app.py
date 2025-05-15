@@ -16,6 +16,7 @@ upload_folder = os.path.join(BASE_DIR, 'static', 'uploads')
 os.makedirs(upload_folder, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = upload_folder
 
+mysql = MySQL(app)
 
 
 def init_db():
