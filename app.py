@@ -3,6 +3,13 @@ from werkzeug.utils import secure_filename
 import os
 from flask_mysqldb import MySQL
 
+print("=== ENV DEBUG START ===")
+for key, value in os.environ.items():
+    print(f"{key} = {value}")
+print("=== ENV DEBUG END ===")
+
+
+
 app = Flask(__name__)
 
 
